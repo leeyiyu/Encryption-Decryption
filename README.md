@@ -72,7 +72,7 @@ weV8YwUr3MIJRUZwGri9frxZrDLXdKz31p90CU27ZmLfksx1Ai3cgVE4JwcaUWj2jKh3VFkypNswjxx4
 
 4.将加密结果encodeURIComponent，生成新参数 encrypt
 
-![image-20221220135540296](/Users/liyiyu/Library/Application Support/typora-user-images/image-20221220135540296.png)
+![image](https://user-images.githubusercontent.com/43566239/208850709-f3f1aaa6-f8e4-4317-bfc1-66556b742161.png)
 
 5.请求方式如上，后端返回加密过的字符串
 
@@ -86,7 +86,7 @@ weV8YwUr3MIJRUZwGri9frxZrDLXdKz31p90CU27ZmLfksx1Ai3cgVE4JwcaUWj2jKh3VFkypNswjxx4
 
 前端POST请求前4步骤同GET请求,不同在于请求方式
 
-![image-20221220140134577](/Users/liyiyu/Library/Application Support/typora-user-images/image-20221220140134577.png)
+![image](https://user-images.githubusercontent.com/43566239/208850740-8fa2cd16-4f7e-41c6-a83f-faa461bd82b1.png)
 
 
 
@@ -131,5 +131,5 @@ if ("post".equals(httpMethod)) {
 
 附上整个前端到后端的加解密流程图
 
-![前后端国密加密流程](/Users/liyiyu/Downloads/前后端国密加密流程.jpg)
+![image](https://user-images.githubusercontent.com/43566239/208850774-a4569f85-8e57-4d45-8cd7-2b004d3b3f95.png)
 
