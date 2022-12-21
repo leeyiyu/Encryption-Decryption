@@ -1,0 +1,13 @@
+server:
+  port: 7899
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  #修改thymeleaf访问根路径
+  thymeleaf:
+    prefix: classpath:/view/
+  http:
+    encoding:
+      force: true
+      charset: utf-8
