@@ -72,7 +72,7 @@ weV8YwUr3MIJRUZwGri9frxZrDLXdKz31p90CU27ZmLfksx1Ai3cgVE4JwcaUWj2jKh3VFkypNswjxx4
 
 4.将加密结果encodeURIComponent，生成新参数 encrypt
 
-![image](https://user-images.githubusercontent.com/43566239/208850709-f3f1aaa6-f8e4-4317-bfc1-66556b742161.png)
+![image](https://user-images.githubusercontent.com/43566239/233278020-41df6ae1-9cb4-4105-a17b-b6d8ec9d478f.png)
 
 5.请求方式如上，后端返回加密过的字符串
 
@@ -86,7 +86,7 @@ weV8YwUr3MIJRUZwGri9frxZrDLXdKz31p90CU27ZmLfksx1Ai3cgVE4JwcaUWj2jKh3VFkypNswjxx4
 
 前端POST请求前4步骤同GET请求,不同在于请求方式
 
-![image](https://user-images.githubusercontent.com/43566239/208850740-8fa2cd16-4f7e-41c6-a83f-faa461bd82b1.png)
+![image](https://user-images.githubusercontent.com/43566239/233277976-b72fe44a-f34d-4f43-a38b-6f962257157d.png)
 
 
 
@@ -96,40 +96,39 @@ weV8YwUr3MIJRUZwGri9frxZrDLXdKz31p90CU27ZmLfksx1Ai3cgVE4JwcaUWj2jKh3VFkypNswjxx4
 
 ```java
 if ("post".equals(httpMethod)) {
-                if (pjp.getArgs().length > 0) {
-                    //入参类属性填充
-                    for (int i = 0; i < pjp.getArgs().length; i++) {
-                        int finalI = i;
-                        ReflectUtils.fieldSetter(pjp.getArgs()[i], (Field field) -> {
-                            try {
-                                field.set(pjp.getArgs()[finalI], jsonObject.get(field.getName()));
-                            } catch (Exception e) {
-                                return false;
-                            }
+          if (pjp.getArgs().length > 0) {
+            //入参类属性填充
+            for (int i = 0; i < pjp.getArgs().length; i++) {
+                 int finalI = i;
+                 ReflectUtils.fieldSetter(pjp.getArgs()[i], (Field field) -> {
+                        try {
+                           field.set(pjp.getArgs()[finalI], jsonObject.get(field.getName()));
+                        } catch (Exception e) {
+                            return false;
+                         }
                             return true;
-                        });
-                    }
-                }
-            }
+                 });
+           }
+      }
+}
 
-            if ("get".equals(httpMethod)) {
-                //参数注解，一维是参数，二维是注解
-                Annotation[][] annotationArray = method.getParameterAnnotations();
-                for (int i = 0; i < annotationArray.length; i++) {
-                    Annotation[] paramAnn = annotationArray[i];
-                    for (Annotation annotation : paramAnn) {
-                        //判断当前注解是否为GetParam.class
-                        if (annotation.annotationType().equals(GetParam.class)) {
-                            GetParam bean = (GetParam) annotation;
+if ("get".equals(httpMethod)) {
+    //参数注解，一维是参数，二维是注解
+    Annotation[][] annotationArray = method.getParameterAnnotations();
+    for (int i = 0; i < annotationArray.length; i++) {
+        Annotation[] paramAnn = annotationArray[i];
+             for (Annotation annotation : paramAnn) {
+                  //判断当前注解是否为GetParam.class
+                  if (annotation.annotationType().equals(GetParam.class)) {
+                       GetParam bean = (GetParam) annotation;
                             args[i] = jsonObject.get(bean.value());
                             break;
                         }
-                    }
-                }
-            }
+              }
+         }
+}
 ```
 
 附上整个前端到后端的加解密流程图
 
-![image](https://user-images.githubusercontent.com/43566239/208850774-a4569f85-8e57-4d45-8cd7-2b004d3b3f95.png)
-
+![image](https://user-images.githubusercontent.com/43566239/233277945-9f3bca85-67b9-46c0-8970-fb18945dba27.png)
